@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carambar Jokes Factory</title>
+</head>
+<body>
+    <h1>Carambar Jokes Factory</h1>
+    <button
+        class="getJoke-btn"
+        id="getJoke-btn"
+        type="button"
+        onclick="getJoke()"
+    >
+        Get Joke
+    </button>
+    <p>Hello Carambar Jokes API !</p>
+
+    <script>
+        const randomJokeDisplay = document.getElementById("randomJoke");
+        function getJoke() {
+            const randomJoke = fetch("http://localhost:3000/api.carambarJokes/v1.0.0/carambarJokes/jokes/random-joke/:randomId")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+        }
+    </script>
+</body>
+</html>
