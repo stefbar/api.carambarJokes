@@ -21,7 +21,7 @@ app.use(express.json())
 
 app.use(jokesRoutes)
 
-app.get('/api.carambarJokes/v1.0.0', (req, res) => {
+app.get('/', (req, res) => {
     res.render('index.ejs')
 })
 

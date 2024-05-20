@@ -1,5 +1,12 @@
 const CarambarJokes = require('../models/jokesModels')
 
+/**
+ * Retrieves all jokes from the database and sends them as a JSON response.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Promise<void>} A promise that resolves when the jokes are retrieved and sent as a response.
+ */
 exports.getAllJokes = async (req, res) => {
     try {
         const jokes = await CarambarJokes.findAll()
@@ -9,6 +16,13 @@ exports.getAllJokes = async (req, res) => {
     }
 }
 
+/**
+ * Retrieves a joke from the database by its ID and sends it as a JSON response.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Promise<void>} A promise that resolves when the joke is retrieved and sent as a response.
+ */
 exports.getJokeById = async (req, res) => {
     try {
         const joke = await CarambarJokes.findByPk(req.params.jokeId)
@@ -22,6 +36,13 @@ exports.getJokeById = async (req, res) => {
     }
 }
 
+/**
+ * Retrieves a random joke from the database and sends it as a JSON response.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Promise<void>} A promise that resolves when the joke is retrieved and sent as a response.
+ */
 exports.getRandomJoke = async (req, res) => {
     try {
         const randomId = await Math.floor(Math.random() * 10 + 1)
@@ -32,6 +53,13 @@ exports.getRandomJoke = async (req, res) => {
     }
 }
 
+/**
+ * Adds a new joke to the database.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Promise<void>} A promise that resolves when the joke is added successfully.
+ */
 exports.addJoke = async (req, res) => {
     try {
         const joke = await CarambarJokes.create(req.body)
@@ -41,6 +69,13 @@ exports.addJoke = async (req, res) => {
     }
 }
 
+/**
+ * Updates a joke in the database.
+ *
+ * @param {Object} req - The request object containing the joke ID and updated joke data.
+ * @param {Object} res - The response object used to send the updated joke or an error message.
+ * @return {Promise<void>} A promise that resolves when the joke is updated successfully or rejects with an error.
+ */
 exports.updateJoke = async (req, res) => {
     try {
         const joke = await CarambarJokes.findByPk(req.params.jokeId)
@@ -55,6 +90,13 @@ exports.updateJoke = async (req, res) => {
     }
 }
 
+/**
+ * Deletes a joke from the database.
+ *
+ * @param {Object} req - The request object containing the joke ID.
+ * @param {Object} res - The response object used to send a success message or an error message.
+ * @return {Promise<void>} A promise that resolves when the joke is deleted successfully or rejects with an error.
+ */
 exports.deleteJoke = async (req, res) => {
     try {
         const joke = await CarambarJokes.findByPk(req.params.jokeId)
