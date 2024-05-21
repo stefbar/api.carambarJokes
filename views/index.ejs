@@ -20,7 +20,7 @@
     <script>
         const randomJokeDisplay = document.getElementById("randomJoke");
         function getJoke() {
-            const randomJoke = fetch("http://localhost:3000/api.carambarJokes/v1.0.0/carambarJokes/jokes/random-joke/:randomId")
+            const randomJoke = fetch("http://localhost:3000/api.carambarJokes/v1.0.0/random-joke/:randomId")
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

@@ -7,6 +7,25 @@ const CarambarJokes = require('../models/jokesModels')
  * @param {Object} res - The response object.
  * @return {Promise<void>} A promise that resolves when the jokes are retrieved and sent as a response.
  */
+
+/**
+ * @swagger
+ * /jokes:get
+ *   get:
+ *     summary: Get all jokes
+ *     tags: [Jokes]
+ *     responses:
+ *       200:
+ *         description: The list of all jokes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Joke'
+ *       500:
+ *         description: Internal server error
+ */
 exports.getAllJokes = async (req, res) => {
     try {
         const jokes = await CarambarJokes.findAll()
