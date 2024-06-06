@@ -14,7 +14,11 @@
     "servers": [
         {
             "url": "http://localhost:3000",
-            "description": "My API Documentation"
+            "description": "local API Documentation for testing"
+        },
+        {
+            "url": "https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0",
+            "description": "API Documentation for production"
         }
     ],
     "paths": {
@@ -30,7 +34,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Joke"
+                                        "$ref": "#/components/schemas/CarambarJokes"
                                     }
                                 }
                             }

@@ -1,18 +1,14 @@
 require('dotenv').config()
 const express = require('express')
-// const router = require('express').Router()
-const swaggerJsdoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
-// const swaggerOptions = require('./swagger/options')
-const swaggerOptions = require('./swagger/options.json')
+// const swaggerOptions = require('./swagger/options.json')
+const swaggerDocs = require('./swagger/options.js')
 
 const sequelize = require('./db')
 const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT
 const jokesRoutes = require('./routes/jokesRoutes')
-
-// const swaggerDocs = swaggerJsdoc(swaggerOptions)
 
 app.use(cors({
     origin: '*'
@@ -29,15 +25,16 @@ sequelize.sync().then(() => {
 
 app.use(express.json())
 
+app.use('/api.carambarJokes/v1.0.0', jokesRoutes)
+
 app.use(
     "/api.carambarJokes/v1.0.0/api-docs",
     // "https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs",
     swaggerUi.serve,
-    swaggerUi.setup(swaggerOptions, { explorer: true })
-    // swaggerUi.setup(swaggerDocs, { explorer: true })
+    // swaggerUi.setup(swaggerOptions, { explorer: true })
+    swaggerUi.setup(swaggerDocs, { explorer: true })
 )
 
-app.use('/api.carambarJokes/v1.0.0', jokesRoutes)
 
 app.get('/', (req, res) => {
     res.render('index.ejs')
