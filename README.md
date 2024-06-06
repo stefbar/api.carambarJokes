@@ -19,6 +19,8 @@ A simple API to execute CRUD operations on a database full of Carambar jokes.
 
 ## API
 
+- OpenAPI specs 3.1.0 [Swagger api.carambarJokes documentation](https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs/)
+
 ## ➤ GET
 
 ### Retrieve all jokes from the database and sends them as a JSON response
