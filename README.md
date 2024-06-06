@@ -1,13 +1,17 @@
 
 # api.carambarJokes
+
 ## version v1.0.0
+
 A simple API to execute CRUD operations on a database full of Carambar jokes.
 
 ## Features
-- Have a look on the [ Carambar Jokes Factory](https://stefbar.github.io/carambarFront/)
+
+- Have a look on the [Carambar_Jokes_Factory](https://stefbar.github.io/carambarFront/)
 - Free to use
 
 ## Tech Stack
+
 - Node.js
 - Express.js
 - Sequelize
@@ -15,56 +19,68 @@ A simple API to execute CRUD operations on a database full of Carambar jokes.
 
 ## API
 
-## ➤ GET :
+## ➤ GET
 
-### Retrieve all jokes from the database and sends them as a JSON response:
+### Retrieve all jokes from the database and sends them as a JSON response
+
 ```http
 GET /api.carambarJokes/v1.0.0/jokes
 ```
+
 ----------
 
-### Retrieve a joke from the database by its ID and sends it as a JSON response:
+### Retrieve a joke from the database by its ID and sends it as a JSON response
+
 ```http
 GET /api.carambarJokes/v1.0.0/jokes/:jokeId
 ```
+
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `jokeId` | `integer` | **Required**. The joke id |
 
 ----------
 
-### Get a random-picked joke from the database and sends it as a JSON response:
+### Get a random-picked joke from the database and sends it as a JSON response
+
 ```http
 GET /api.carambarJokes/v1.0.0/random-joke/:randomId
-```        
+```
+
 ----------
 
-## ➤ POST :
+## ➤ POST
 
-### Add a joke to the database:
+### Add a joke to the database
+
 ```http
 POST /api.carambarJokes/v1.0.0/jokes
 ```
+
 ----------
 
-## ➤ PUT:
+## ➤ PUT
 
-### Update a joke inthe database:
+### Update a joke inthe database
+
 ```http
 PUT /api.carambarJokes/v1.0.0/jokes/:jokeId
 ```
+
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `jokeId` | `integer` | **Required**. The joke id |
 
 ----------
 
-## ➤ DELETE:
+## ➤ DELETE
 
-### Delete joke inthe database:
+### Delete joke inthe database
+
 ```http
 DELETE /api.carambarJokes/v1.0.0/jokes/:jokeId
 ```
+
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `jokeId` | `integer` | **Required**. The joke id |
@@ -72,22 +88,25 @@ DELETE /api.carambarJokes/v1.0.0/jokes/:jokeId
 ----------
 
 ## How to use
+
 1. Clone the repo
+
 ``` bash
 git clone https://github.com/stefbar/api.carambarJokes.git
 ```
 
-2. Install dependencies
+1. Install dependencies
+
 ``` bash
 npm install
 ```
 
-3. Start the dev server
+1. Start the dev server
+
 ``` bash
 npm start
 ```
 
 ## License
-UNLICENSED.
 
-  
+UNLICENSED.

@@ -15,10 +15,10 @@
     >
         Get Joke
     </button>
+    <p>Joke will appear in the console</p>
     <p>Hello Carambar Jokes API !</p>
 
     <script>
-        const randomJokeDisplay = document.getElementById("randomJoke");
         function getJoke() {
             const randomJoke = fetch("https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/random-joke/:randomId")
                 .then(res => res.json())

@@ -1,0 +1,76 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Carambar jokes API",
+        "version": "1.0.0",
+        "description":
+            "Basic CRUD API { Node / Express / Sequelize / SQLite } documented with Swagger",
+        "contact": {
+            "name": "NDE",
+            "url": "https://nde-portfolio.vercel.app/",
+            "email": "stef.barucq@gmail.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "local API Documentation for testing"
+        },
+        {
+            "url": "https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0",
+            "description": "API Documentation for production"
+        }
+    ],
+    "paths": {
+        "/api.carambarJokes/v1.0.0/jokes": {
+            "get": {
+                "summary": "Get all jokes",
+                "description": "Retrieve all jokes from the database and sends them as a JSON response",
+                "responses": {
+                    "200": {
+                        "description": "Jokes retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CarambarJokes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CarambarJokes": {
+                "type": "object",
+                "required": [
+                    "joke",
+                    "category_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Auto-generated id of the joke"
+                    },
+                    "joke": {
+                        "type": "string",
+                        "description": "The joke or charade or question itself"
+                    },
+                    "answer": {
+                        "type": "string",
+                        "description": "The solution to the joke if of category \"question\" or \"charade\""
+                    },
+                    "category_id": {
+                        "type": "integer",
+                        "description": "1 if of category \"story\" or 2 if of category \"question\" or 3 if of category \"charade\""
+                    }
+                }
+            }
+        }
+    }
+}
