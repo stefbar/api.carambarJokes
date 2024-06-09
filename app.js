@@ -1,15 +1,30 @@
 require('dotenv').config()
 const express = require('express')
+const sequelize = require('./db')
+const cors = require('cors')
+const { rateLimit } = require('express-rate-limit')
+const compression = require('compression')
+
 const swaggerUi = require('swagger-ui-express')
 // const swaggerOptions = require('./swagger/options.json')
 const swaggerDocs = require('./swagger/options.js')
-
-const sequelize = require('./db')
-const cors = require('cors')
-const app = express()
-const PORT = process.env.PORT
 const jokesRoutes = require('./routes/jokesRoutes')
 
+const PORT = process.env.PORT
+
+const app = express()
+
+const limiter = rateLimit({
+	windowMs: 60 * 1000, // 1 minute
+	limit: 30, // Limit each IP to 30 requests per `window` (here, per minute)
+	standardHeaders: true,
+	legacyHeaders: false,
+    message: 'Too many requests, please try again later',
+    statusCode: 429
+})
+
+app.use(limiter)
+app.use(compression())
 app.use(cors({
     origin: '*'
 }))
