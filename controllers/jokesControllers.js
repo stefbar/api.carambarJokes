@@ -10,7 +10,12 @@ const CarambarJokes = require('../models/jokesModels')
 exports.getAllJokes = async (req, res) => {
     try {
         const jokes = await CarambarJokes.findAll()
-        res.json(jokes)
+        if(!jokes) {
+            res.status(404).send(`Jokes not found`)
+            return
+        }
+        res.status(200).json(jokes)
+        console.log(res)
     } catch(err) {
         res.status(500).send(err)
     }

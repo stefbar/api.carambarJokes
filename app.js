@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-const sequelize = require('./db')
+const sequelize = require('./data/db.js')
 const cors = require('cors')
 const { rateLimit } = require('express-rate-limit')
 const compression = require('compression')
