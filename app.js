@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const sequelize = require('./data/db.js')
+const helmet = require('helmet')
 const cors = require('cors')
 const { rateLimit } = require('express-rate-limit')
 const compression = require('compression')
@@ -23,6 +24,7 @@ const limiter = rateLimit({
     statusCode: 429
 })
 
+app.use(helmet())
 app.use(limiter)
 app.use(compression())
 app.use(cors({
