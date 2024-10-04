@@ -37,7 +37,7 @@ app.use(cors({
 app.set('view engine', 'ejs')
 
 sequelize.sync().then(() => {
-    console.log('Connection has been established successfully.');
+    console.log('Connection has been established successfully.')
 })
 
 app.use(express.json())
