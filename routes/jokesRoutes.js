@@ -37,7 +37,6 @@ const router = express.Router()
  *               $ref: '#/components/schemas/CarambarJokes'
  *       500:
  *         description: Server error
- *     description: Server error
  * 
  * /jokes/{jokeId}:
  *   get:
@@ -113,6 +112,7 @@ const router = express.Router()
  *             schema:
  *               $ref: '#/components/schemas/CarambarJokes'
  *       500:
+ *         description: Server error
  */
 
 router.route('/jokes').get(getAllJokes)

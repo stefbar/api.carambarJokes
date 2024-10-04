@@ -72,7 +72,7 @@ exports.getRandomJoke = async (req, res) => {
 exports.addJoke = async (req, res) => {
     try {
         const joke = await CarambarJokes.create(req.body)
-        res.json(joke).send(`Joke  added susccessfully`)
+        res.json(joke).send(`Joke added susccessfully`)
     } catch(err) {
         res.status(500).send(err)
     }
