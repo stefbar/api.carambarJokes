@@ -52,12 +52,9 @@ exports.getRandomJoke = async (req, res) => {
     try {
         const randomId = await Math.floor(Math.random() * 10 + 1)
         const joke = await CarambarJokes.findByPk(randomId)
-        if(!joke) {
-            res.status(404).send(`Joke ${randomId} not found`)
-            return
-        }
         res.json(joke)
     } catch(err) {
+        // res.status(404).send(`Joke ${randomId} not found`)
         res.status(500).send(err)
     }
 }
