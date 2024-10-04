@@ -7,8 +7,8 @@ export const carambarJokes = [
     },
     {
         "id": 2,
-        "joke": "Quel est la femelle du oignon ?",
-        "answer": "L\’orange",
+        "joke": "Que dit un oignon quand il se cogne ?",
+        "answer": "Aïe !",
         "category_id": 2
     },
     {
@@ -31,14 +31,14 @@ export const carambarJokes = [
     },
     {
         "id": 6,
-        "joke": "Qu'est ce que les enfants usent le plus à l'école ?",
-        "answer": "Le professeur",
+        "joke": "Que se fait un Schtroumpf quand il tombe ?",
+        "answer": "Un Bleu.",
         "category_id": 2
     },
     {
         "id": 7,
-        "joke": "Quel est le sport le plus silencieux ?",
-        "answer": "Le para-chuuuut",
+        "joke": "Quel est le comble pour un marin ?",
+        "answer": "Avoir le nez qui coule.",
         "category_id": 2
     },
     {
@@ -50,7 +50,7 @@ export const carambarJokes = [
     {
         "id": 9,
         "joke": "Quel est le sport le plus silencieux ?",
-        "answer": "Le para-chuuuut",
+        "answer": "Le para-chuuuut.",
         "category_id": 2
     },
     {
