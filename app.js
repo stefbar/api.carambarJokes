@@ -27,9 +27,7 @@ const limiter = rateLimit({
 app.use(helmet())
 app.use(limiter)
 app.use(compression())
-app.use(cors({
-    origin: '*'
-}))
+app.use(cors())
 // const corsOptions = {
 //     origin: 'http://127.0.0.1:5500',
 //     optionsSuccessStatus: 200
