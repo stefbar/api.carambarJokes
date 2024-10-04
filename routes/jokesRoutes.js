@@ -56,6 +56,10 @@ const router = express.Router()
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CarambarJokes'
+ *       400:
+ *         description: Invalid ID supplied
+ *       404:
+ *         description: Joke not found
  *       500:
  *         description: Server error
  * 
@@ -78,6 +82,12 @@ const router = express.Router()
  *     responses:
  *       200:
  *         description: Joke successfully updated.
+ *       400:
+ *         description: Invalid ID supplied
+ *       404:
+ *         description: Joke to update not found
+ *       500:
+ *         description: Server error
  * 
  *   delete:
  *     summary: Delete a specific joke
@@ -92,6 +102,12 @@ const router = express.Router()
  *     responses:
  *       200:
  *         description: Joke successfully deleted.
+ *       400:
+ *         description: Invalid ID supplied
+ *       404:
+ *         description: Joke to delete not found
+ *       500:
+ *         description: Server error
  * 
  * /random-joke/{randomId}:
  *   get:
@@ -111,8 +127,12 @@ const router = express.Router()
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CarambarJokes'
+ *       400:
+ *         description: Invalid ID returned
+ *       404:
+ *          description: Joke not found
  *       500:
- *         description: Server error
+ *          description: Server error
  */
 
 router.route('/jokes').get(getAllJokes)
