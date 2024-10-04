@@ -49,12 +49,12 @@ exports.getJokeById = async (req, res) => {
  * @return {Promise<void>} A promise that resolves when the joke is retrieved and sent as a response.
  */
 exports.getRandomJoke = async (req, res) => {
+    const randomId = await Math.floor(Math.random() * 10 + 1)
     try {
-        const randomId = await Math.floor(Math.random() * 10 + 1)
         const joke = await CarambarJokes.findByPk(randomId)
         res.json(joke)
     } catch(err) {
-        // res.status(404).send(`Joke ${randomId} not found`)
+        res.status(404).send(`Joke ${randomId} not found`)
         res.status(500).send(err)
     }
 }
