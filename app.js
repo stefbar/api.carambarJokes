@@ -34,7 +34,7 @@ app.use(compression())
 // }
 // app.use(cors(corsOptions))
 app.use(cors({
-    origin: ['http://127.0.0.1:5501/**', 'http://localhost:3000/**', 'https://stefbar.github.io/carambarFront/**, http://localhost:3000/api.carambarJokes/v1.0.0/api-docs/**'],
+    origin: ['http://127.0.0.1:5501/**', 'http://localhost:3000/**', 'https://stefbar.github.io/carambarFront/**, http://localhost:3000/api.carambarJokes/v1.0.0/api-docs/**', 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs/**', 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/**'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }))
 app.set('view engine', 'ejs')
