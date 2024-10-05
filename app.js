@@ -39,21 +39,11 @@ app.use(cors({
 }))
 app.set('view engine', 'ejs')
 
-// Testing the connection
-async function testConnection() {
-    try {
-        await sequelize.authenticate()
-        console.log('Connection has been established successfully.')
-    } catch (error) {
-        console.error('Unable to connect to the database:', error)
-    }
-  }
-  
-  testConnection()
 
-// sequelize.sync().then(() => {
-//     console.log('Connection has been established successfully.')
-// })
+
+sequelize.sync({force: true}).then(() => {
+    console.log('Models synchronized successfully.')
+})
 
 app.use(express.json())
 
