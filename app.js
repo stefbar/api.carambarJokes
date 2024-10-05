@@ -27,12 +27,16 @@ const limiter = rateLimit({
 app.use(helmet())
 app.use(limiter)
 app.use(compression())
-const corsOptions = {
-    // origin: ['http://127.0.0.1:5501', 'http://localhost:3000', 'https://stefbar.github.io/carambarFront'],
-    origin: '*',
-    optionsSuccessStatus: 200
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//      origin: ['http://127.0.0.1:5501', 'http://localhost:3000', 'https://stefbar.github.io/carambarFront'],
+//     origin: '*',
+//     optionsSuccessStatus: 200
+// }
+// app.use(cors(corsOptions))
+app.use(cors({
+    origin: ['http://127.0.0.1:5501', 'http://localhost:3000', 'https://stefbar.github.io/carambarFront'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}))
 app.set('view engine', 'ejs')
 
 sequelize.sync().then(() => {
