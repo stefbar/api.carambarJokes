@@ -60,7 +60,32 @@ app.use(
 
 
 app.get('/', (req, res) => {
-    res.render('index.ejs')
+    // res.render('index.ejs')
+    res.json({
+        message: 'Hello Carambar Jokes API !',
+        documentation: 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs',
+        github: 'https://github.com/stefbar/api.carambarJokes',
+        deployed: 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0',
+        version: '1.0.0',
+        description: 'Basic CRUD API { Node / Express / Sequelize / SQLite } documented with Swagger',
+        contact: {
+            name: 'NDE',
+            url: 'https://nde-portfolio.vercel.app/',
+            email: 'stef.barucq@gmail.com'
+        },
+        features: [
+            'Have a look on the [Carambar_Jokes_Factory](https://stefbar.github.io/carambarFront/)',
+            'Free to use'
+        ],
+        techStack: [
+            'Node.js',
+            'Express.js',
+            'Sequelize',
+            'SQLite'
+        ],
+        allJokes: 'http://localhost:3000/api.carambarJokes/v1.0.0/jokes',
+        randomJoke: 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/random-joke/:randomId'
+    })
 })
 
 app.listen(PORT, () => {
