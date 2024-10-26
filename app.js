@@ -10,9 +10,10 @@ const app = express()
 const PORT = process.env.PORT
 const jokesRoutes = require('./routes/jokesRoutes')
 
-app.use(cors({
-    origin: '*'
-}))
+app.use(cors())
+// app.use(cors({
+//     origin: '*'
+// }))
 // const corsOptions = {
 //     origin: 'http://127.0.0.1:5500',
 //     optionsSuccessStatus: 200
