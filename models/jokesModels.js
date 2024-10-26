@@ -40,7 +40,7 @@
  */
 
 const { DataTypes } = require('sequelize')
-const sequelize = require('../db')
+const sequelize = require('../data/db')
 
 const JokesCategories = sequelize.define('jokesCategories', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},

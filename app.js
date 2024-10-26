@@ -1,27 +1,49 @@
 require('dotenv').config()
 const express = require('express')
+const sequelize = require('./data/db.js')
+const helmet = require('helmet')
+const cors = require('cors')
+const { rateLimit } = require('express-rate-limit')
+const compression = require('compression')
+
 const swaggerUi = require('swagger-ui-express')
 // const swaggerOptions = require('./swagger/options.json')
 const swaggerDocs = require('./swagger/options.js')
-
-const sequelize = require('./db')
-const cors = require('cors')
-const app = express()
-const PORT = process.env.PORT
 const jokesRoutes = require('./routes/jokesRoutes')
 
-app.use(cors())
-// app.use(cors({
-//     origin: '*'
-// }))
+const PORT = process.env.PORT
+
+const app = express()
+
+const limiter = rateLimit({
+	windowMs: 60 * 1000, // 1 minute
+	limit: 30, // Limit each IP to 30 requests per `window` (here, per minute)
+	standardHeaders: true,
+	legacyHeaders: false,
+    message: 'Too many requests, please try again later',
+    statusCode: 429
+})
+
+app.use(helmet())
+app.use(limiter)
+app.use(compression())
 // const corsOptions = {
-//     origin: 'http://127.0.0.1:5500',
+//      origin: ['http://127.0.0.1:5501', 'http://localhost:3000', 'https://stefbar.github.io/carambarFront'],
+//     origin: '*',
 //     optionsSuccessStatus: 200
 // }
+// app.use(cors(corsOptions))
+// app.use(cors({
+//     origin: ['http://127.0.0.1:5501/**', 'http://localhost:3000/**', 'https://stefbar.github.io/carambarFront/**, http://localhost:3000/api.carambarJokes/v1.0.0/api-docs/**', 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs/**', 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/**'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+// }))
+app.use(cors())
 app.set('view engine', 'ejs')
 
-sequelize.sync().then(() => {
-    console.log('Connection has been established successfully.');
+
+
+sequelize.sync({force: true}).then(() => {
+    console.log('Models synchronized successfully.')
 })
 
 app.use(express.json())
