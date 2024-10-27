@@ -9,7 +9,7 @@ const { getAllJokes, getJokeById, getRandomJoke, addJoke, updateJoke, deleteJoke
  *     summary: Retrieve all jokes from the database
  *     tags: [Jokes]
  *     responses:
- *       201:
+ *       200:
  *         description: The whole jokes list.
  *         content:
  *           application/json:

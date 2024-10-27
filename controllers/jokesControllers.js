@@ -9,19 +9,20 @@ const CarambarJokes = require('../models/jokesModels')
  */
 exports.getAllJokes = async (req, res) => {
     try {
-        const jokes = await CarambarJokes.findAndCountAll()
+        const jokes = await CarambarJokes.findAll()
+        console.log(jokes)
         // if(!jokes) {
         //     res.status(404).send(`Jokes not found`)
         //     return
         // }
-        res.status(201).json({
+        res.status(200).json({
             error: false,
             message: 'Jokes retrieved successfully',
             result: jokes
         })
     } catch(err) {
-        res.status(404).send(`Jokes not found`)
-        res.status(500).send(err)
+        console.error(err)
+        res.status(500).send(`Error retrieving jokes: ${err.message}`)
     }
 }
 

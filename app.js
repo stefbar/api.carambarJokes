@@ -27,9 +27,21 @@ const limiter = rateLimit({
 
 connectDb()
 
-app.use(helmet())
-app.use(limiter)
-app.use(compression())
+app.use(helmet.contentSecurityPolicy({
+    useDefaults: false,
+    directives: {
+        defaultSrc: ["'self'"],
+        connectSrc: ["'self'", "http://localhost:3000"],
+        // Add other directives as needed
+    }
+}))
+// app.use(
+//     helmet({
+//         contentSecurityPolicy: false,
+//     })
+// )
+// app.use(limiter)
+// app.use(compression())
 // const corsOptions = {
 //      origin: ['http://127.0.0.1:5501', 'http://localhost:3000', 'https://stefbar.github.io/carambarFront'],
 //     origin: '*',

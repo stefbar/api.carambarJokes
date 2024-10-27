@@ -42,12 +42,12 @@
 const { sequelize } = require('../data/db')
 const { DataTypes } = require('sequelize')
 
-const JokesCategories = sequelize.define('jokesCategories', {
+const JokesCategories = sequelize.define('JokesCategories', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     category: {type: DataTypes.STRING, allowNull: false}
 })
 
-const CarambarJokes = sequelize.define('carambarJokes', {
+const CarambarJokes = sequelize.define('CarambarJokes', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     joke: {type: DataTypes.STRING, allowNull: false},
     answer: DataTypes.STRING,
