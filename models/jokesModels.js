@@ -39,8 +39,8 @@
  *           description: The name of the category
  */
 
+const { sequelize } = require('../data/db')
 const { DataTypes } = require('sequelize')
-const sequelize = require('../data/db')
 
 const JokesCategories = sequelize.define('jokesCategories', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},

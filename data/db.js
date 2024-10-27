@@ -1,23 +1,25 @@
 const { Sequelize } = require('sequelize')
+const colors = require('colors')
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: '../db.sqlite',
+    host: '../db.sqlite',
     define: {
       timestamps: false // don't create created_at and updated_at columns
     }
 })
 
 // Testing the connection
-async function testConnection() {
+const connectDb = async () => {
   try {
+      sequelize.sync()
       await sequelize.authenticate()
-      console.log('Connection has been established successfully.')
+      console.log('Connection has been established successfully.'.yellow.underline.bold)
   } catch (error) {
-      console.error('Unable to connect to the database:', error)
+      console.error('Unable to connect to the database:'.red.underline.bold, error)
   }
 }
 
-testConnection()
+// connectDb()
 
-module.exports = sequelize
+module.exports = { sequelize, connectDb }

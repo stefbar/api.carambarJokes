@@ -1,6 +1,6 @@
-const express = require('express')
+// const express = require('express')
+const router = require('express').Router()
 const { getAllJokes, getJokeById, getRandomJoke, addJoke, updateJoke, deleteJoke } = require('../controllers/jokesControllers')
-const router = express.Router()
 
 /**
  * @swagger
@@ -135,11 +135,11 @@ const router = express.Router()
  *          description: Server error
  */
 
-router.route('/jokes').get(getAllJokes)
-router.route('/jokes').post(addJoke)
-router.route('/jokes/:jokeId').get(getJokeById)
-router.route('/jokes/:jokeId').put(updateJoke)
-router.route('/jokes/:jokeId').delete(deleteJoke)
+router.route('/jokes').get(getAllJokes).post(addJoke)
+// router.route('/jokes').post(addJoke)
+router.route('/jokes/:jokeId').get(getJokeById).put(updateJoke).delete(deleteJoke)
+// router.route('/jokes/:jokeId').put(updateJoke)
+// router.route('/jokes/:jokeId').delete(deleteJoke)
 router.route('/random-joke/:randomId').get(getRandomJoke)
 
 module.exports = router

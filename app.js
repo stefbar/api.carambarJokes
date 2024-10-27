@@ -1,6 +1,8 @@
 require('dotenv').config()
 const express = require('express')
-const sequelize = require('./data/db.js')
+const app = express()
+// const sequelize = require('./data/db.js')
+const { connectDb } = require('./data/db.js')
 const helmet = require('helmet')
 const cors = require('cors')
 const { rateLimit } = require('express-rate-limit')
@@ -11,9 +13,8 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerDocs = require('./swagger/options.js')
 const jokesRoutes = require('./routes/jokesRoutes')
 
-const PORT = process.env.PORT
+const port = 3000 ||process.env.PORT
 
-const app = express()
 
 const limiter = rateLimit({
 	windowMs: 60 * 1000, // 1 minute
@@ -23,6 +24,8 @@ const limiter = rateLimit({
     message: 'Too many requests, please try again later',
     statusCode: 429
 })
+
+connectDb()
 
 app.use(helmet())
 app.use(limiter)
@@ -38,13 +41,13 @@ app.use(compression())
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 // }))
 app.use(cors())
-app.set('view engine', 'ejs')
+// app.set('view engine', 'ejs')
 
 
 
-sequelize.sync({force: true}).then(() => {
-    console.log('Models synchronized successfully.')
-})
+// sequelize.sync({force: true}).then(() => {
+//     console.log('Models synchronized successfully.')
+// })
 
 app.use(express.json())
 
@@ -57,7 +60,6 @@ app.use(
     // swaggerUi.setup(swaggerOptions, { explorer: true })
     swaggerUi.setup(swaggerDocs, { explorer: true })
 )
-
 
 app.get('/', (req, res) => {
     // res.render('index.ejs')
@@ -88,6 +90,6 @@ app.get('/', (req, res) => {
     })
 })
 
-app.listen(PORT, () => {
-    console.log(`Carambar app listening on port ${PORT}`)
+app.listen(port, () => {
+    console.log(`Carambar app listening on port ${port}`)
 })
