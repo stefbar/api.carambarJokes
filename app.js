@@ -4,7 +4,6 @@ const app = express()
 // const sequelize = require('./data/db.js')
 const { connectDb } = require('./data/db.js')
 const helmet = require('helmet')
-const cors = require('cors')
 const { rateLimit } = require('express-rate-limit')
 const compression = require('compression')
 
@@ -12,6 +11,7 @@ const swaggerUi = require('swagger-ui-express')
 // const swaggerOptions = require('./swagger/options.json')
 const swaggerDocs = require('./swagger/options.js')
 const jokesRoutes = require('./routes/jokesRoutes')
+const cors = require('cors')
 
 const port = 3000 ||process.env.PORT
 
