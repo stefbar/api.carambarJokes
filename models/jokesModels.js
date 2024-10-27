@@ -44,12 +44,12 @@ const { DataTypes } = require('sequelize')
 
 const JokesCategories = sequelize.define('jokesCategories', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    category: DataTypes.STRING
+    category: {type: DataTypes.STRING, allowNull: false}
 })
 
 const CarambarJokes = sequelize.define('carambarJokes', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    joke: DataTypes.STRING,
+    joke: {type: DataTypes.STRING, allowNull: false},
     answer: DataTypes.STRING,
     category_id: {type: DataTypes.INTEGER, references: {model: JokesCategories, key: 'id'}}
 })
