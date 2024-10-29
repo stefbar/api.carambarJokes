@@ -11,8 +11,9 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerDocs = require('./swagger/options.js')
 const jokesRoutes = require('./routes/jokesRoutes')
 const cors = require('cors')
+const { json } = require('body-parser')
 
-const port = 3000 ||process.env.PORT
+const port = process.env.PORT
 
 const app = express()
 
@@ -27,19 +28,19 @@ const limiter = rateLimit({
 
 connectDb()
 
-app.use(helmet.contentSecurityPolicy({
-    useDefaults: false,
-    directives: {
-        defaultSrc: ["'self'"],
-        connectSrc: ["'self'", "api.carambarJokes/v1.0.0"],
-        // Add other directives as needed
-    }
-}))
-// app.use(
-//     helmet({
-//         contentSecurityPolicy: false,
-//     })
-// )
+// app.use(helmet.contentSecurityPolicy({
+//     useDefaults: false,
+//     directives: {
+//         defaultSrc: ["'self'"],
+//         connectSrc: ["'self'", "api.carambarJokes/v1.0.0"],
+//         // Add other directives as needed
+//     }
+// }))
+app.use(
+    helmet({
+        contentSecurityPolicy: false,
+    })
+)
 app.use(limiter)
 app.use(compression())
 // const corsOptions = {
@@ -48,19 +49,19 @@ app.use(compression())
 //     optionsSuccessStatus: 200
 // }
 // app.use(cors(corsOptions))
-// app.use(cors({
-//     origin: [
-//         'http://127.0.0.1:5501/**',
-//         'http://localhost:3000/**',
-//         'https://stefbar.github.io/carambarFront/**',
-//         'http://localhost:3000/api.carambarJokes/v1.0.0/api-docs/**',
-//         'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs/**',
-//         'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/**'
-//     ],
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-// }))
-app.use(cors())
-// app.set('view engine', 'ejs')
+app.use(cors({
+    origin: [
+        'http://127.0.0.1:5501/**',
+        'http://localhost:3000/**',
+        'https://stefbar.github.io/carambarFront',
+        'http://localhost:3000/api.carambarJokes/v1.0.0/api-docs/**',
+        'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs/**',
+        'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/**'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}))
+// app.use(cors())
+app.set('view engine', 'ejs')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -75,32 +76,11 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-    // res.render('index.ejs')
-    res.json({
-        message: 'Hello Carambar Jokes API !',
-        documentation: 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs',
-        github: 'https://github.com/stefbar/api.carambarJokes',
-        deployed: 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0',
-        version: '1.0.0',
-        description: 'Basic CRUD API { Node / Express / Sequelize / SQLite } documented with Swagger',
-        contact: {
-            name: 'NDE',
-            url: 'https://nde-portfolio.vercel.app/',
-            email: 'stef.barucq@gmail.com'
-        },
-        features: [
-            'Have a look on the [Carambar_Jokes_Factory](https://stefbar.github.io/carambarFront/)',
-            'Free to use'
-        ],
-        techStack: [
-            'Node.js',
-            'Express.js',
-            'Sequelize',
-            'SQLite'
-        ],
-        allJokes: 'http://localhost:3000/api.carambarJokes/v1.0.0/jokes',
-        randomJoke: 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/random-joke/:randomId'
-    })
+   
+    res.render('index.ejs')
+    // res.json({
+    //     message: 'Hello Carambar Jokes API !',
+    // })
 })
 
 app.listen(port, () => {

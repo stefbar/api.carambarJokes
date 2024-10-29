@@ -10,12 +10,12 @@ const { sequelize } = require('../db')
  */
 exports.getAllJokes = async (req, res) => {
     try {
-        const options = {
-            raw: true,
-            type: sequelize.QueryTypes.SELECT,
-            logging: console.log,
-        }
-        const jokes = await CarambarJokes.findAll(options)
+        // const options = {
+        //     raw: true,
+        //     type: sequelize.QueryTypes.SELECT,
+        //     logging: console.log,
+        // }
+        const jokes = await CarambarJokes.findAll()
         console.log('Jokes retrieved: ', jokes)
         console.log('Jokes length:', jokes.length)
         res.status(200).json(jokes)
