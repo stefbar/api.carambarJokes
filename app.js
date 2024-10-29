@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 // const sequelize = require('./db.js')
 const { connectDb } = require('./db.js')
-const helmet = require('helmet')
+// const helmet = require('helmet')
 const { rateLimit } = require('express-rate-limit')
 const compression = require('compression')
 
@@ -36,11 +36,11 @@ connectDb()
 //         // Add other directives as needed
 //     }
 // }))
-app.use(
-    helmet({
-        contentSecurityPolicy: false,
-    })
-)
+// app.use(
+//     helmet({
+//         contentSecurityPolicy: false,
+//     })
+// )
 app.use(limiter)
 app.use(compression())
 // const corsOptions = {
