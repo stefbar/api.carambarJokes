@@ -17,11 +17,11 @@ const swaggerOptions = {
 
         servers: [
             {
-                url: "http://localhost:3000/api.carambarJokes/v1.0.0/api-docs",
+                url: "http://localhost:3000/api.carambarJokes/v1.0.0",
                 description: "local API Documentation for testing"
             },
             {
-                url: "https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs",
+                url: "https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0",
                 description: "API Documentation for production"
             }
         ],

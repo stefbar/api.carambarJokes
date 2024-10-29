@@ -65,16 +65,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/api.carambarJokes/v1.0.0', (req, res) => {
-    res.json({
-        message: 'Hello Carambar Jokes API !',
-        documentation: 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs',
-        github: 'https://github.com/stefbar/api.carambarJokes'
-    })
-})
-
 app.use('/api.carambarJokes/v1.0.0', jokesRoutes)
-
 app.use(
     "/api.carambarJokes/v1.0.0/api-docs",
     // "https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs",
