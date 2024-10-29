@@ -43,23 +43,19 @@ connectDb()
 // )
 app.use(limiter)
 app.use(compression())
-// const corsOptions = {
-//      origin: ['http://127.0.0.1:5501', 'http://localhost:3000', 'https://stefbar.github.io/carambarFront'],
-//     origin: '*',
-//     optionsSuccessStatus: 200
-// }
-// app.use(cors(corsOptions))
-app.use(cors({
+const corsOptions = {
     origin: [
-        'http://127.0.0.1:5501/**',
-        'http://localhost:3000/**',
+        'http://127.0.0.1:5501', // exact port you are serving from
+        'http://localhost:3000',
         'https://stefbar.github.io/carambarFront',
-        'http://localhost:3000/api.carambarJokes/v1.0.0/api-docs/**',
-        'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs/**',
-        'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/**'
+        'https://api-carambarjokes.onrender.com',
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-}))
+    // credentials: true // If using cookies, set this to true
+}
+
+app.use(cors(corsOptions));
+
 // app.use(cors())
 app.set('view engine', 'ejs')
 
