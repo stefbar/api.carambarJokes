@@ -5,7 +5,7 @@ const colors = require('colors')
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: './db.sqlite',
-    logging: console.log(),
+    logging: console.log,
     define: {
       timestamps: false // don't create created_at and updated_at columns
     }

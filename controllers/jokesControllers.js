@@ -18,7 +18,7 @@ exports.getAllJokes = async (req, res) => {
         const jokes = await CarambarJokes.findAll()
         console.log('Jokes retrieved: ', jokes)
         console.log('Jokes length:', jokes.length)
-        res.status(200).json(jokes)
+        res.json(jokes)
     } catch(err) {
         console.error('Error retrieving jokes: ', err)
         res.status(500).json({ message: 'Error retrieving jokes' })
@@ -35,7 +35,7 @@ exports.getAllJokes = async (req, res) => {
 exports.getJokeById = async (req, res) => {
     try {
         const joke = await CarambarJokes.findByPk(req.params.jokeId)
-        res.status(200).json(joke)
+        res.json(joke)
     } catch(err) {
         res.status(404).send(`Joke ${req.params.jokeId} not found`)
         res.status(500).send(err)
@@ -87,7 +87,7 @@ exports.updateJoke = async (req, res) => {
     try {
         const joke = await CarambarJokes.findByPk(req.params.jokeId)
         const updatedJoke = await joke.update(req.body)
-        res.json(updatedJoke)
+        res.json(updatedJoke).send(`Joke updated susccessfully`)
     } catch(err) {
         res.status(404).send(`Joke ${req.params.jokeId} not found`)
         res.status(500).send(err)
@@ -105,7 +105,7 @@ exports.deleteJoke = async (req, res) => {
     try {
         const joke = await CarambarJokes.findByPk(req.params.jokeId)
         await joke.destroy()
-        res.status(200).send(`Joke ${req.params.jokeId} deleted`)
+        res.send(`Joke ${req.params.jokeId} deleted susccessfully`)
     } catch(err) {
         res.status(404).send(`Joke ${req.params.jokeId} not found`)
         res.status(500).send(err)
