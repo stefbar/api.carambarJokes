@@ -36,11 +36,15 @@
  *           description: Auto-generated id of the category
  *         category:
  *           type: string
- *           description: The name of the category
+ *           description: categories "story", "question" or "charade".
+ *       example:
+ *         id: 1
+ *         category: question
  */
 
-const { sequelize } = require('../data/db')
+const { sequelize } = require('../db')
 const { DataTypes } = require('sequelize')
+
 
 const JokesCategories = sequelize.define('JokesCategories', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -50,8 +54,8 @@ const JokesCategories = sequelize.define('JokesCategories', {
 const CarambarJokes = sequelize.define('CarambarJokes', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     joke: {type: DataTypes.STRING, allowNull: false},
-    answer: DataTypes.STRING,
+    answer: {type: DataTypes.STRING,},
     category_id: {type: DataTypes.INTEGER, references: {model: JokesCategories, key: 'id'}}
 })
 
-module.exports = CarambarJokes
+module.exports = { CarambarJokes, JokesCategories }

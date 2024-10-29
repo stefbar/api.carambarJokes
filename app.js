@@ -1,8 +1,7 @@
 require('dotenv').config()
 const express = require('express')
-const app = express()
-// const sequelize = require('./data/db.js')
-const { connectDb } = require('./data/db.js')
+// const sequelize = require('./db.js')
+const { connectDb } = require('./db.js')
 const helmet = require('helmet')
 const { rateLimit } = require('express-rate-limit')
 const compression = require('compression')
@@ -15,6 +14,7 @@ const cors = require('cors')
 
 const port = 3000 ||process.env.PORT
 
+const app = express()
 
 const limiter = rateLimit({
 	windowMs: 60 * 1000, // 1 minute
@@ -31,7 +31,7 @@ app.use(helmet.contentSecurityPolicy({
     useDefaults: false,
     directives: {
         defaultSrc: ["'self'"],
-        connectSrc: ["'self'", "http://localhost:3000"],
+        connectSrc: ["'self'", "api.carambarJokes/v1.0.0"],
         // Add other directives as needed
     }
 }))
@@ -40,8 +40,8 @@ app.use(helmet.contentSecurityPolicy({
 //         contentSecurityPolicy: false,
 //     })
 // )
-// app.use(limiter)
-// app.use(compression())
+app.use(limiter)
+app.use(compression())
 // const corsOptions = {
 //      origin: ['http://127.0.0.1:5501', 'http://localhost:3000', 'https://stefbar.github.io/carambarFront'],
 //     origin: '*',
@@ -49,19 +49,29 @@ app.use(helmet.contentSecurityPolicy({
 // }
 // app.use(cors(corsOptions))
 // app.use(cors({
-//     origin: ['http://127.0.0.1:5501/**', 'http://localhost:3000/**', 'https://stefbar.github.io/carambarFront/**, http://localhost:3000/api.carambarJokes/v1.0.0/api-docs/**', 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs/**', 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/**'],
+//     origin: [
+//         'http://127.0.0.1:5501/**',
+//         'http://localhost:3000/**',
+//         'https://stefbar.github.io/carambarFront/**',
+//         'http://localhost:3000/api.carambarJokes/v1.0.0/api-docs/**',
+//         'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs/**',
+//         'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/**'
+//     ],
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 // }))
 app.use(cors())
 // app.set('view engine', 'ejs')
 
-
-
-// sequelize.sync({force: true}).then(() => {
-//     console.log('Models synchronized successfully.')
-// })
-
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.get('/api.carambarJokes/v1.0.0', (req, res) => {
+    res.json({
+        message: 'Hello Carambar Jokes API !',
+        documentation: 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs',
+        github: 'https://github.com/stefbar/api.carambarJokes'
+    })
+})
 
 app.use('/api.carambarJokes/v1.0.0', jokesRoutes)
 

@@ -1,4 +1,5 @@
-const CarambarJokes = require('../models/jokesModels')
+const { CarambarJokes } = require('../models/jokesModels')
+const { sequelize } = require('../db')
 
 /**
  * Retrieves all jokes from the database and sends them as a JSON response.
@@ -9,20 +10,18 @@ const CarambarJokes = require('../models/jokesModels')
  */
 exports.getAllJokes = async (req, res) => {
     try {
-        const jokes = await CarambarJokes.findAll()
-        console.log(jokes)
-        // if(!jokes) {
-        //     res.status(404).send(`Jokes not found`)
-        //     return
-        // }
-        res.status(200).json({
-            error: false,
-            message: 'Jokes retrieved successfully',
-            result: jokes
-        })
+        const options = {
+            raw: true,
+            type: sequelize.QueryTypes.SELECT,
+            logging: console.log,
+        }
+        const jokes = await CarambarJokes.findAll(options)
+        console.log('Jokes retrieved: ', jokes)
+        console.log('Jokes length:', jokes.length)
+        res.status(200).json(jokes)
     } catch(err) {
-        console.error(err)
-        res.status(500).send(`Error retrieving jokes: ${err.message}`)
+        console.error('Error retrieving jokes: ', err)
+        res.status(500).json({ message: 'Error retrieving jokes' })
     }
 }
 
@@ -36,11 +35,7 @@ exports.getAllJokes = async (req, res) => {
 exports.getJokeById = async (req, res) => {
     try {
         const joke = await CarambarJokes.findByPk(req.params.jokeId)
-        // if(!joke) {
-        //     res.status(404).send(`Joke ${req.params.jokeId} not found`)
-        //     return
-        // }
-        res.json(joke)
+        res.status(200).json(joke)
     } catch(err) {
         res.status(404).send(`Joke ${req.params.jokeId} not found`)
         res.status(500).send(err)
@@ -91,10 +86,6 @@ exports.addJoke = async (req, res) => {
 exports.updateJoke = async (req, res) => {
     try {
         const joke = await CarambarJokes.findByPk(req.params.jokeId)
-        // if(!joke) {
-        //     res.status(404).send(`Joke ${req.params.jokeId} not found`)
-        //     return
-        // }
         const updatedJoke = await joke.update(req.body)
         res.json(updatedJoke)
     } catch(err) {
@@ -113,10 +104,6 @@ exports.updateJoke = async (req, res) => {
 exports.deleteJoke = async (req, res) => {
     try {
         const joke = await CarambarJokes.findByPk(req.params.jokeId)
-        // if(!joke) {
-        //     res.status(404).send(`Joke ${req.params.jokeId} not found`)
-        //     return
-        // }
         await joke.destroy()
         res.status(200).send(`Joke ${req.params.jokeId} deleted`)
     } catch(err) {

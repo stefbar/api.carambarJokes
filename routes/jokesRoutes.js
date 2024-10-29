@@ -1,4 +1,3 @@
-// const express = require('express')
 const router = require('express').Router()
 const { getAllJokes, getJokeById, getRandomJoke, addJoke, updateJoke, deleteJoke } = require('../controllers/jokesControllers')
 
@@ -136,10 +135,7 @@ const { getAllJokes, getJokeById, getRandomJoke, addJoke, updateJoke, deleteJoke
  */
 
 router.route('/jokes').get(getAllJokes).post(addJoke)
-// router.route('/jokes').post(addJoke)
 router.route('/jokes/:jokeId').get(getJokeById).put(updateJoke).delete(deleteJoke)
-// router.route('/jokes/:jokeId').put(updateJoke)
-// router.route('/jokes/:jokeId').delete(deleteJoke)
 router.route('/random-joke/:randomId').get(getRandomJoke)
 
 module.exports = router

@@ -1,17 +1,15 @@
 {
   "name": "carambar-jokes",
   "version": "1.0.0",
-  "description": "",
+  "description": "A basic CRUD API { Node / Express / Sequelize / SQLite } documented with Swagger",
   "main": "app.js",
   "scripts": {
-    "test": "node_modules/.bin/ava --verbose",
-    "test:watch": "node_modules/.bin/ava --verbose --watch",
     "start": "dotenvx run -- nodemon app.js"
   },
   "author": "NDE",
   "license": "UNLICENSED",
   "dependencies": {
-    "@dotenvx/dotenvx": "^0.44.1",
+    "@dotenvx/dotenvx": "^0.44.6",
     "better-sqlite3": "^11.5.0",
     "body-parser": "^1.20.3",
     "colors": "^1.4.0",
@@ -24,7 +22,7 @@
     "express-rate-limit": "^7.3.1",
     "helmet": "^7.1.0",
     "md5": "^2.3.0",
-    "sequelize": "^6.37.3",
+    "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
