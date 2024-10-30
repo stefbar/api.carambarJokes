@@ -9,7 +9,6 @@
   "author": "NDE",
   "license": "UNLICENSED",
   "dependencies": {
-    "@dotenvx/dotenvx": "^0.44.6",
     "better-sqlite3": "^11.5.0",
     "body-parser": "^1.20.3",
     "colors": "^1.4.0",
@@ -30,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/register": "^7.24.6",
+    "@dotenvx/dotenvx": "^1.21.0",
     "eslint": "^9.4.0"
   },
   "eslintConfig": {
