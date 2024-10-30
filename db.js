@@ -28,27 +28,6 @@ async function testConnection() {
   }
 }
 // testConnection()
-
-async function checkTables() {
-  const [results] = await sequelize.query("SELECT name FROM sqlite_master WHERE type='table'")
-  console.log('Tables in database:', results)
-}
-// checkTables()
-
-async function checkData() {
-  const [results] = await sequelize.query("SELECT COUNT(*) as count FROM CarambarJokes");
-  console.log('Number of jokes:', results[0].count);
-}
-// checkData()
-
-async function init() {
-  await testConnection();
-  await checkTables();
-  await checkData();
-}
-
-init().catch(err => console.error(err))
-
 const connectDb = async () => {
   try {
       await sequelize.sync()
@@ -57,5 +36,25 @@ const connectDb = async () => {
       console.error('Unable to connect to the database:'.red.underline.bold, error)
   }
 }
+
+async function checkTables() {
+  const [results] = await sequelize.query("SELECT name FROM sqlite_master WHERE type='table'")
+  console.log('Tables in database:', results)
+}
+// checkTables()
+
+async function checkData() {
+  const [results] = await sequelize.query("SELECT COUNT(*) as count FROM CarambarJokes")
+  console.log('Number of jokes:', results[0].count)
+}
+// checkData()
+
+async function init() {
+  await testConnection()
+  await connectDb()
+  await checkTables()
+  await checkData()
+}
+init().catch(err => console.error(err))
 
 module.exports = { sequelize, connectDb }

@@ -25,7 +25,7 @@ const limiter = rateLimit({
     statusCode: 429
 })
 
-connectDb()
+// connectDb()
 
 // app.use(helmet.contentSecurityPolicy({
 //     useDefaults: false,
