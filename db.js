@@ -8,6 +8,14 @@ const sequelize = new Sequelize({
     logging: console.log,
     define: {
       timestamps: false // don't create created_at and updated_at columns
+    },
+    hooks: {
+      beforeConnect: (config) => {
+        console.log('Before connecting to the database.');
+      },
+      afterConnect: () => {
+        console.log('After connecting to the database.');
+      }
     }
 })
 

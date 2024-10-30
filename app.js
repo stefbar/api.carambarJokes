@@ -11,7 +11,6 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerDocs = require('./swagger/options.js')
 const jokesRoutes = require('./routes/jokesRoutes')
 const cors = require('cors')
-const { json } = require('body-parser')
 
 const port = process.env.PORT
 
