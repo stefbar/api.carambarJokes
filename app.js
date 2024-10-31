@@ -16,6 +16,7 @@ const port = process.env.PORT
 
 const app = express()
 
+app.enable('trust proxy')
 const limiter = rateLimit({
 	windowMs: 60 * 1000, // 1 minute
 	limit: 30, // Limit each IP to 30 requests per `window` (here, per minute)
@@ -42,18 +43,22 @@ const limiter = rateLimit({
 // )
 app.use(limiter)
 app.use(compression())
+
+// app.options('*', cors(corsOptions)) // Handle pre-flight requests
 const corsOptions = {
     origin: [
         'http://127.0.0.1:5501', // exact port you are serving from
         'http://localhost:3000',
         'https://stefbar.github.io/carambarFront',
         'https://api-carambarjokes.onrender.com',
+        // 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs',
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     // credentials: true // If using cookies, set this to true
+    // credentials: true, // Add this line if you need to send credentials
 }
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions))
 
 // app.use(cors())
 app.set('view engine', 'ejs')

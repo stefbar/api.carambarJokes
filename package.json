@@ -4,6 +4,7 @@
   "description": "A basic CRUD API { Node / Express / Sequelize / SQLite } documented with Swagger",
   "main": "app.js",
   "scripts": {
+    "seed": "node data/dbSeed.js",
     "start": "dotenvx run -- nodemon app.js"
   },
   "author": "NDE",
