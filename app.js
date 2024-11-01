@@ -3,7 +3,7 @@ const express = require('express')
 // const sequelize = require('./db.js')
 // const { connectDb } = require('./db.js')
 // const helmet = require('helmet')
-const { rateLimit } = require('express-rate-limit')
+// const { rateLimit } = require('express-rate-limit')
 const compression = require('compression')
 
 const swaggerUi = require('swagger-ui-express')
@@ -17,14 +17,14 @@ const port = process.env.PORT
 const app = express()
 
 app.disable('trust proxy')
-const limiter = rateLimit({
-	windowMs: 60 * 1000, // 1 minute
-	limit: 30, // Limit each IP to 30 requests per `window` (here, per minute)
-	standardHeaders: true,
-	legacyHeaders: false,
-    message: 'Too many requests, please try again later',
-    statusCode: 429
-})
+// const limiter = rateLimit({
+// 	windowMs: 60 * 1000, // 1 minute
+// 	limit: 30, // Limit each IP to 30 requests per `window` (here, per minute)
+// 	standardHeaders: true,
+// 	legacyHeaders: false,
+//     message: 'Too many requests, please try again later',
+//     statusCode: 429
+// })
 
 // connectDb()
 
