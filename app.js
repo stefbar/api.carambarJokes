@@ -52,6 +52,7 @@ const corsOptions = {
     origin: [
         'http://127.0.0.1:5501', // exact port you are serving from
         'http://localhost:3000',
+        'https://stefbar.github.io',
         'https://stefbar.github.io/carambarFront',
         'https://api-carambarjokes.onrender.com',
         // 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs',

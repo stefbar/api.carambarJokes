@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize')
 const sqlite3 = require('sqlite3').verbose()
 const colors = require('colors')
-// const { seedDatabase } = require('./data/dbSeed.js')
+const { seedDatabase } = require('./data/dbSeed.js')
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -48,9 +48,9 @@ async function checkData() {
   const [results] = await sequelize.query("SELECT COUNT(*) as count FROM CarambarJokes")
   if(results[0].count === 0) {
     console.log('No jokes in database, will seed...')
-    await require('./data/dbSeed.js')()
-    // await seedDatabase()
-    // console.log('Jokes seeded successfully.')    
+    // await require('./data/dbSeed.js')()
+    await seedDatabase()
+    console.log('Jokes seeded successfully.')    
   }
   console.log('Number of jokes:', results[0].count)
 }
