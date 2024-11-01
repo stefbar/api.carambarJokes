@@ -17,8 +17,8 @@ const swaggerOptions = {
 
         servers: [
             {
-                url: "https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs",
-                // url: "https://api-carambarjokes.onrender.com",
+                // url: "https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs",
+                url: "https://api-carambarjokes.onrender.com",
                 description: "API Documentation for production"
             },
             {
