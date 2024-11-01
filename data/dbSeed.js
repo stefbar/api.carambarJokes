@@ -73,15 +73,15 @@ async function seedDatabase() {
     ]
 
     try {
-        const sequelize = new Sequelize(config.database, null, null, {
-            dialect: 'sqlite',
-            storage: config.storage,
-        })
+        // const sequelize = new Sequelize(config.database, null, null, {
+        //     dialect: 'sqlite',
+        //     storage: config.storage,
+        // })
 
-        await sequelize.authenticate()
-        console.log('Connection has been established successfully.')
+        // await sequelize.authenticate()
+        // console.log('Connection has been established successfully.')
 
-        await sequelize.sync()
+        // await sequelize.sync()
 
         await JokesCategories.bulkCreate(categories)
         console.log('Categories have been seeded successfully.')

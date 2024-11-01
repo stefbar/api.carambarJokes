@@ -10,14 +10,14 @@ const sequelize = new Sequelize({
     define: {
       timestamps: false // don't create created_at and updated_at columns
     },
-    hooks: {
-      beforeConnect: (config) => {
-        console.log('Before connecting to the database.')
-      },
-      afterConnect: () => {
-        console.log('After connecting to the database.')
-      }
-    }
+    // hooks: {
+    //   beforeConnect: (config) => {
+    //     console.log('Before connecting to the database.')
+    //   },
+    //   afterConnect: () => {
+    //     console.log('After connecting to the database.')
+    //   }
+    // }
 })
 
 async function testConnection() {
