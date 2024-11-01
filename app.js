@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 // const sequelize = require('./db.js')
-const { connectDb } = require('./db.js')
+// const { connectDb } = require('./db.js')
 // const helmet = require('helmet')
 const { rateLimit } = require('express-rate-limit')
 const compression = require('compression')
@@ -16,7 +16,7 @@ const port = process.env.PORT
 
 const app = express()
 
-app.enable('trust proxy')
+// app.enable('trust proxy')
 const limiter = rateLimit({
 	windowMs: 60 * 1000, // 1 minute
 	limit: 30, // Limit each IP to 30 requests per `window` (here, per minute)
