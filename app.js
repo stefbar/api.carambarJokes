@@ -16,7 +16,7 @@ const port = process.env.PORT
 
 const app = express()
 
-// app.enable('trust proxy')
+app.disable('trust proxy')
 const limiter = rateLimit({
 	windowMs: 60 * 1000, // 1 minute
 	limit: 30, // Limit each IP to 30 requests per `window` (here, per minute)
