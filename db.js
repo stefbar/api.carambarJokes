@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize')
 const sqlite3 = require('sqlite3').verbose()
 const colors = require('colors')
+const { seedDatabase } = require('./data/dbSeed.js')
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -11,10 +12,10 @@ const sequelize = new Sequelize({
     },
     hooks: {
       beforeConnect: (config) => {
-        console.log('Before connecting to the database.');
+        console.log('Before connecting to the database.')
       },
       afterConnect: () => {
-        console.log('After connecting to the database.');
+        console.log('After connecting to the database.')
       }
     }
 })
@@ -31,6 +32,7 @@ async function testConnection() {
 const connectDb = async () => {
   try {
       await sequelize.sync()
+      await seedDatabase()
       console.log('Connection established, models synchronized successfully.'.yellow.underline.bold)
   } catch (error) {
       console.error('Unable to connect to the database:'.red.underline.bold, error)

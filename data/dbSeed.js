@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize')
 const config = require('../config/config.json')['production'] // or 'development', depending on your environment
 const { CarambarJokes, JokesCategories } = require('../models/jokesModels')
 
-async function seedDatabase() {
+export async function seedDatabase() {
     // Your seeding logic here, e.g., using models to create records
     const jokes = [
         {
@@ -77,4 +77,4 @@ async function seedDatabase() {
     }
 }
 
-seedDatabase()
+// seedDatabase()
