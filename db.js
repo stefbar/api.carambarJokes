@@ -46,13 +46,17 @@ const connectDb = async () => {
 
 async function checkData() {
   const [results] = await sequelize.query("SELECT COUNT(*) as count FROM CarambarJokes")
+  if(results[0].count === 0) {
+    console.log('No jokes in database, will seed...')
+    await seedDatabase()
+    console.log('Jokes seeded successfully.')    
+  }
   console.log('Number of jokes:', results[0].count)
 }
 // checkData()
 
 async function init() {
   await testConnection()
-  await seedDatabase()
   await connectDb()
   await checkTables()
   await checkData()
