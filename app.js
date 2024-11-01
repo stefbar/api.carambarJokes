@@ -17,6 +17,8 @@ const port = process.env.PORT
 const app = express()
 
 // app.disable('trust proxy')
+app.set('trust proxy', 1); // Trust the first proxy for secure IP-based rate limiting
+
 const limiter = rateLimit({
 	windowMs: 60 * 1000, // 1 minute
 	limit: 30, // Limit each IP to 30 requests per `window` (here, per minute)
@@ -24,7 +26,7 @@ const limiter = rateLimit({
 	legacyHeaders: false,
     message: 'Too many requests, please try again later',
     statusCode: 429,
-    validate: {trustProxy: false},
+    // validate: {trustProxy: false},
 })
 
 // connectDb()
