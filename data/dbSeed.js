@@ -100,4 +100,6 @@ async function seedDatabase() {
 
 }
 
-seedDatabase().catch(err => console.error('Seeding failed:', err))
+// seedDatabase().catch(err => console.error('Seeding failed:', err))
+
+module.exports = { seedDatabase }
