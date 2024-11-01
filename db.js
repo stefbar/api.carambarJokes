@@ -46,7 +46,8 @@ const connectDb = async () => {
 
 async function checkData() {
   const [results] = await sequelize.query("SELECT COUNT(*) as count FROM CarambarJokes")
-  if(results[0].count === 0) {
+  const [resultsCategories] = await sequelize.query("SELECT COUNT(*) as count FROM JokesCategories")
+  if(results[0].count === 0 && resultsCategories[0].count === 0) {
     console.log('No jokes in database, will seed...')
     // await require('./data/dbSeed.js')()
     await seedDatabase()

@@ -1,5 +1,5 @@
-const { Sequelize } = require('sequelize')
-const config = require('../config/config.json')['production'] // or 'development', depending on your environment
+// const { Sequelize } = require('sequelize')
+// const config = require('../config/config.json')['production'] // or 'development', depending on your environment
 const { CarambarJokes, JokesCategories } = require('../models/jokesModels')
 
 async function seedDatabase() {
