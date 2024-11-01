@@ -67,14 +67,18 @@ async function seedDatabase() {
         console.log('Connection has been established successfully.')
         await sequelize.sync()
 
-        for (const joke of jokes) {
-            await CarambarJokes.create(joke)
-        }
+        await CarambarJokes.bulkCreate(jokes)
+        // for (const joke of jokes) {
+        //     await CarambarJokes.create(joke)
+        // }
         console.log('Jokes have been seeded successfully.')
 
     } catch (error) {
         console.error('Unable to connect to the database:', error)
+    } finally {
+        await sequelize.close()
     }
+
 }
 
 seedDatabase()
