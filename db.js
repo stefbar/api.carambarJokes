@@ -32,14 +32,13 @@ async function testConnection() {
 const connectDb = async () => {
   try {
       await sequelize.sync()
-      await seedDatabase()
       console.log('Connection established, models synchronized successfully.'.yellow.underline.bold)
-  } catch (error) {
+    } catch (error) {
       console.error('Unable to connect to the database:'.red.underline.bold, error)
+    }
   }
-}
-
-async function checkTables() {
+  
+  async function checkTables() {
   const [results] = await sequelize.query("SELECT name FROM sqlite_master WHERE type='table'")
   console.log('Tables in database:', results)
 }
@@ -53,6 +52,7 @@ async function checkData() {
 
 async function init() {
   await testConnection()
+  await seedDatabase()
   await connectDb()
   await checkTables()
   await checkData()
