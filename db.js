@@ -56,10 +56,15 @@ async function checkData() {
 // checkData()
 
 async function init() {
+  try {
   await testConnection()
   await connectDb()
   await checkTables()
   await checkData()
+}
+  catch (error) {
+    console.error('An error occurred during initialization: ', error)
+  }
 }
 init().catch(err => console.error(err))
 
