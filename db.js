@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize')
 const sqlite3 = require('sqlite3').verbose()
 const colors = require('colors')
-const { seedDatabase } = require('./data/dbSeed.js')
+// const { seedDatabase } = require('./data/dbSeed.js')
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
