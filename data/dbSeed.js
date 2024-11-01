@@ -4,6 +4,21 @@ const { CarambarJokes, JokesCategories } = require('../models/jokesModels')
 
 async function seedDatabase() {
     // Your seeding logic here, e.g., using models to create records
+    const categories = [
+        {
+            id: 1,
+            category: "story"
+        },
+        {
+            id: 2,
+            category: "question"
+        },  
+        {
+            id: 3,
+            category: "charade"
+        }
+    ]
+
     const jokes = [
         {
             id: 1,
@@ -68,6 +83,8 @@ async function seedDatabase() {
 
         await sequelize.sync()
 
+        await JokesCategories.bulkCreate(categories)
+        console.log('Categories have been seeded successfully.')
         await CarambarJokes.bulkCreate(jokes)
         // for (const joke of jokes) {
         //     await CarambarJokes.create(joke)
