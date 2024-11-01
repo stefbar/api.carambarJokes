@@ -75,10 +75,11 @@ async function seedDatabase() {
         console.log('Jokes have been seeded successfully.')
 
     } catch (error) {
-        console.error('Unable to connect to the database: ', error)
-    } finally {
-        await sequelize.close()
+        console.error('Error during seeding the database: ', error)
     }
+    // finally {
+    //     await sequelize.close()
+    // }
 
 }
 
