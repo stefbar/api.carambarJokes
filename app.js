@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-// const sequelize = require('./db.js')
+const sequelize = require('./db.js')
 // const { connectDb } = require('./db.js')
 // const helmet = require('helmet')
 const { rateLimit } = require('express-rate-limit')
@@ -15,6 +15,12 @@ const cors = require('cors')
 const port = process.env.PORT
 
 const app = express()
+
+sequelize.sync().then(async () => {
+    console.log('Database synchronized')
+    await seedDatabase()
+    console.log('Seeding complete')
+}).catch(err => console.error('Error syncing database:', err))
 
 // app.disable('trust proxy')
 app.set('trust proxy', 1); // Trust the first proxy for secure IP-based rate limiting
