@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-const sequelize = require('./db.js')
+const { sequelize } = require('./db.js')
 // const { connectDb } = require('./db.js')
 // const helmet = require('helmet')
 const { rateLimit } = require('express-rate-limit')
