@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize')
 const sqlite3 = require('sqlite3').verbose()
 const colors = require('colors')
-// const { seedDatabase } = require('./data/dbSeed.js')
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -24,7 +23,6 @@ async function testConnection() {
 const connectDb = async () => {
   try {
       await sequelize.sync()
-      // await sequelize.sync({ force: true })
       console.log('Connection established, models synchronized successfully.'.yellow.underline.bold)
     } catch (error) {
       console.error('Unable to connect to the database:'.red.underline.bold, error)
@@ -41,10 +39,7 @@ async function checkData() {
   const [jokesCount] = await sequelize.query("SELECT COUNT(*) as count FROM CarambarJokes")
   const [categoriesCount] = await sequelize.query("SELECT COUNT(*) as count FROM JokesCategories")
   if(jokesCount[0].count === 0 && categoriesCount[0].count === 0) {
-    console.log('No jokes in database, will seed...')
-    // await require('./data/dbSeed.js')()
-    // await seedDatabase()
-    // console.log('Jokes seeded successfully.')    
+    console.log('No jokes in database, will seed...')  
   }
   console.log('Number of jokes:', jokesCount[0].count)
   console.log('Number of categories:', categoriesCount[0].count)

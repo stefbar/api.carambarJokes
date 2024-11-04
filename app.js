@@ -23,7 +23,6 @@ sequelize.sync().then(async () => {
     console.log('Seeding complete')
 }).catch(err => console.error('Error syncing database:', err))
 
-// app.disable('trust proxy')
 app.set('trust proxy', 1); // Trust the first proxy for secure IP-based rate limiting
 
 const limiter = rateLimit({
@@ -32,8 +31,7 @@ const limiter = rateLimit({
 	standardHeaders: true,
 	legacyHeaders: false,
     message: 'Too many requests, please try again later',
-    statusCode: 429,
-    // validate: {trustProxy: false},
+    statusCode: 429
 })
 
 // connectDb()
@@ -57,21 +55,17 @@ app.use(compression())
 // app.options('*', cors(corsOptions)) // Handle pre-flight requests
 const corsOptions = {
     origin: [
-        'http://127.0.0.1:5501', // exact port you are serving from
+        'http://localhost:5501',
         'http://localhost:3000',
         'https://stefbar.github.io',
         'https://stefbar.github.io/carambarFront',
         'https://api-carambarjokes.onrender.com',
-        // 'https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs',
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    // credentials: true // If using cookies, set this to true
-    // credentials: true, // Add this line if you need to send credentials
+    // credentials: true // If using cookies or need to send credentials, set this to true
 }
-
 app.use(cors(corsOptions))
 
-// app.use(cors())
 app.set('view engine', 'ejs')
 
 app.use(express.json())
@@ -80,18 +74,13 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api.carambarJokes/v1.0.0', jokesRoutes)
 app.use(
     "/api.carambarJokes/v1.0.0/api-docs",
-    // "https://api-carambarjokes.onrender.com/api.carambarJokes/v1.0.0/api-docs",
     swaggerUi.serve,
     // swaggerUi.setup(swaggerOptions, { explorer: true })
     swaggerUi.setup(swaggerDocs, { explorer: true })
 )
 
-app.get('/', (req, res) => {
-   
+app.get('/', (req, res) => { 
     res.render('index.ejs')
-    // res.json({
-    //     message: 'Hello Carambar Jokes API !',
-    // })
 })
 
 app.listen(port, () => {

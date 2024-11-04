@@ -1,5 +1,3 @@
-// const { Sequelize } = require('sequelize')
-// const config = require('../config/config.json')['production']
 const { CarambarJokes, JokesCategories } = require('../models/jokesModels')
 
 async function seedDatabase() {
@@ -47,7 +45,7 @@ async function seedDatabase() {
         {
             id: 5,
             joke: "Quel est le sport le plus fruité ?",
-            answer: "La boxe, parce que tu te prends des pêches dans la poire et tu ombes dans es pommes.",
+            answer: "La boxe, parce que tu te prends des pêches dans la poire et tu tombes dans les pommes.",
             category_id: 2
         },
         {
@@ -83,16 +81,6 @@ async function seedDatabase() {
     ]
 
     try {
-        // const sequelize = new Sequelize(config.database, null, null, {
-        //     dialect: 'sqlite',
-        //     storage: config.storage,
-        // })
-
-        // await sequelize.authenticate()
-        // console.log('Connection has been established successfully.')
-
-        // await sequelize.sync()
-
         await JokesCategories.bulkCreate(categories)
         console.log('Categories have been seeded successfully.')
         await CarambarJokes.bulkCreate(jokes)
@@ -104,10 +92,6 @@ async function seedDatabase() {
     } catch (error) {
         console.error('Error during seeding the database: ', error)
     }
-    // finally {
-    //     await sequelize.close()
-    // }
-
 }
 
 seedDatabase().catch(err => console.error('Seeding failed:', err))
