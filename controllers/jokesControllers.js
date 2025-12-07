@@ -44,6 +44,8 @@ exports.getJokeById = async (req, res) => {
  * @return {Promise<void>} A promise that resolves when the joke is retrieved and sent as a response.
  */
 exports.getRandomJoke = async (req, res) => {
+    console.log(res)
+    
     const min = 1
     const max = res.jokes.length
     const randomId = await Math.floor(Math.random() * ( max - min + 1)) + min
