@@ -47,7 +47,7 @@ exports.getRandomJoke = async (req, res) => {
     console.log(res)
     
     const min = 1
-    const max = res.jokes.length
+    const max = 21 // jokes.length
     const randomId = await Math.floor(Math.random() * ( max - min + 1)) + min
     try {
         const joke = await CarambarJokes.findByPk(randomId)
