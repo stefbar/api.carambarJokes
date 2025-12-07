@@ -101,7 +101,7 @@ async function seedDatabase() {
         },
         {
             id: 4,
-            joke: "- Tu sais respirer par le nez ?/n - Bah oui./n - Super, tu peux fermer ta gueule alors...",
+            joke: "- Tu sais respirer par le nez ?\n - Bah oui.\n - Super, tu peux fermer ta gueule alors...",
             answer: "",
             category_id: 1
         },
@@ -140,6 +140,72 @@ async function seedDatabase() {
             joke: "Quand un tuyau mâle rencontre un tuyau femelle, un robi naît.",
             answer: "",
             category_id: 1
+        },
+        {
+            id: 11,
+            joke: "- Je pas à l'île Maurice !\n - Je pars à Lille, Maurice.",
+            answer: "",
+            category_id: 1
+        },
+        {
+            id: 12,
+            joke: "Cher Père Noël, je voudrais un petit cul et un gros compte en banque. Merci de ne pas confondre comme l'année passée.",
+            answer: "",
+            category_id: 1
+        },
+        {
+            id: 13,
+            joke: "La raclette pour le givre c'est vraiment pas pratique : j'ai du fromage plein les essuie-glaces.",
+            answer: "",
+            category_id: 1
+        },
+        {
+            id: 14,
+            joke: "T'es pas le pingouin le plus aiguisé du paquet.",
+            answer: "",
+            category_id: 1
+        },
+        {
+            id: 15,
+            joke: "Le médecin m'a dit que les bananes, c'était bon pour stopper la diarrhée, c'est vrai, ça marche... Mais quand tu l'enlèves ça reprend...",
+            answer: "",
+            category_id: 1
+        },
+        {
+            id: 16,
+            joke: "85% des gens sont nuls en maths. Heureusement, je fais partie des 25% restants.",
+            answer: "",
+            category_id: 1
+        },
+        {
+            id: 17,
+            joke: "Pourquoi parvenez-vous à vous abstenir de faire la bise lorsque vus êtes malade, mais pas de donner votre opinion quand vous êtes con ?",
+            answer: "",
+            category_id: 1
+        },
+        {
+            id: 18,
+            joke: "Pourquoi les forêts bretonnes sont-elles si propres aujourd'hui ?",
+            answer: "Parce que des druides y ont passé la serpe hier.",
+            category_id: 2
+        },
+        {
+            id: 19,
+            joke: "Donnez un laxatif à quelqu'un qui tousse. Ça ne le guérira pas mais il n'osera plus tousser.",
+            answer: "",
+            category_id: 1
+        },
+        {
+            id: 20,
+            joke: "Qu'a dit l'entraineur de Bastien quand celui-ci a mis un magnifique essai lors de son dernier match de rugby ?",
+            answer: "Bel essai Bastien !",
+            category_id: 2
+        },
+        {
+            id: 21,
+            joke: "Qu'y a-t-il de mieux que de faire tourner un enfant sur un tourniquet ?",
+            answer: "L'arrêter avec une pelle.",
+            category_id: 2
         },
     ]
 
