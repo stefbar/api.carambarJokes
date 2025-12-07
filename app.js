@@ -52,19 +52,19 @@ const limiter = rateLimit({
 app.use(limiter)
 app.use(compression())
 
-// app.options('*', cors(corsOptions)) // Handle pre-flight requests
 const corsOptions = {
     origin: [
         'http://localhost:5501',
         'http://localhost:3000',
         'https://stefbar.github.io',
-        'https://stefbar.github.io/carambarFront',
+        // 'https://stefbar.github.io/carambarFront',
         'https://api-carambarjokes.onrender.com',
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     // credentials: true // If using cookies or need to send credentials, set this to true
 }
 app.use(cors(corsOptions))
+app.options('*', cors(corsOptions)) // Handle pre-flight requests
 
 app.set('view engine', 'ejs')
 
