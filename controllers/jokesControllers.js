@@ -10,7 +10,7 @@ const { CarambarJokes } = require('../models/jokesModels')
 exports.getAllJokes = async (req, res) => {
     try {
         const jokes = await CarambarJokes.findAll()
-        console.log('Jokes retrieved: ', jokes)
+        // console.log('Jokes retrieved: ', jokes)
         console.log('Jokes length:', jokes.length)
         res.json(jokes)
     } catch(err) {
@@ -44,7 +44,9 @@ exports.getJokeById = async (req, res) => {
  * @return {Promise<void>} A promise that resolves when the joke is retrieved and sent as a response.
  */
 exports.getRandomJoke = async (req, res) => {
-    const randomId = await Math.floor(Math.random() * 10 + 1)
+    const min = 1
+    const max = res.jokes.length
+    const randomId = await Math.floor(Math.random() * ( max - min + 1)) + min
     try {
         const joke = await CarambarJokes.findByPk(randomId)
         res.json(joke)
